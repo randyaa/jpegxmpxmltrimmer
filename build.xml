@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="package" name="Create Runnable Jar for Project JPegXMPXMLTrimmer with Jar-in-Jar Loader">
+	<property file="build.properties" />
+	<property name="version" value="DEVELOPMENT"/> <!-- OVERRIDE this when building real versions -->
+
+	<!--this file was created by Eclipse Runnable JAR Export Wizard-->
+	<!--ANT 1.7 is required                                        -->
+	<target name="package" depends="build">
+		<jar destfile="dist/${jar.name}">
+			<manifest>
+				<attribute name="Implementation-Version" value="${version}" />
+				<attribute name="Implementation-Vendor" value="${vendor}" />
+				<attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader" />
+				<attribute name="Rsrc-Main-Class" value="com.ra.StandAloneXMPTrimmer" />
+				<attribute name="Class-Path" value="." />
+				<attribute name="Rsrc-Class-Path" value="./ sanselan-0.97-incubator.jar" />
+			</manifest>
+			<zipfileset src="lib/jar-in-jar-loader.zip" />
+			<fileset dir="bin" />
+			<fileset dir="lib">
+				<include name="**/*.jar" />
+			</fileset>
+			<!--zipfileset dir="lib" includes="sanselan-0.97-incubator.jar" /--><!-- repeat for each lib -->
+		</jar>
+	</target>
+
+	<path id="classpath">
+		<pathelement location="bin" />
+		<pathelement location="${ANT_HOME}" />
+		<fileset dir="lib">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="build">
+		<javac includeantruntime="true" debug="true" destdir="bin" source="src">
+			<src path="src" />
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+</project>

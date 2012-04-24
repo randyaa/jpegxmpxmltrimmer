@@ -53,6 +53,7 @@ public class StandAloneXMPTrimmer {
 						+ StandAloneXMPTrimmer.class.getName()
 						+ " <file or directory to process>"
 						+ " <optional: overwriteOriginalFiles (true|false defaults to false)>");
+		System.exit(-1);
 	}
 
 	/**
@@ -176,7 +177,7 @@ public class StandAloneXMPTrimmer {
 		// we include the runtime so that multiple runs of the trimmer do not
 		// cause issues when ovewrite is set to true
 		File fileWithTrimmedXmpXml = new File(file.getParent(), file.getName()
-				+ ".fixed-xmp" + runtime + ".jpg");
+				+ ".fixed-xmp-" + runtime + ".jpg");
 		OutputStream os = null;
 		try {
 			os = new BufferedOutputStream(new FileOutputStream(
