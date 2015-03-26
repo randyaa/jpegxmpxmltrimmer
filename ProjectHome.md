@@ -1,0 +1,1 @@
+Small java program to trim XMP XML from JPEGs which contain XMP XML with surrounding whitespace.
